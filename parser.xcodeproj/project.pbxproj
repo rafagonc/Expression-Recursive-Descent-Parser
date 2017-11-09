@@ -232,6 +232,7 @@
 		2AE4BFDF1FB1227700C0AE55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8P5355PV9G;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -241,6 +242,7 @@
 		2AE4BFE01FB1227700C0AE55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8P5355PV9G;
 				PRODUCT_NAME = "$(TARGET_NAME)";

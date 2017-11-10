@@ -14,8 +14,7 @@
 //  A -> I T
 //  I -> N
 //  I -> L N T R
-//  T -> O I
-//  T -> T T
+//  T -> O I T
 //  T -> (palavra-vazia)
 //  N -> 1, 2, 3, 4, 5, 6, 7, 8, 9
 //  N -> N N

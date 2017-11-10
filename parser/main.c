@@ -10,24 +10,38 @@
 //
 //  Regras de produção
 //
-//  S -> A S
-//  S -> (palavra-vazia)
-//  A -> L S
-//  A -> N T
-//  T -> O N
+//  S -> A
+//  A -> I T
+//  I -> N
+//  I -> L N T R
+//  T -> O I
+//  T -> T T
+//  T -> (palavra-vazia)
 //  N -> 1, 2, 3, 4, 5, 6, 7, 8, 9
 //  N -> N N
 //  O -> +, -, *, /
 //  R -> )
 //  L -> (
 //
-// S - A S - L A R S - L N T R
-//
-//  Created by Rafael Gonzalves on 11/6/17.
-//  Copyright © 2017 Rafael Gonzalves. All rights reserved.
+//  PALAVRA A SER RECONHECIDA
 //
 
+const char * PALAVRA = "(33+(4-(3*(4*31231+(331231*3+3+3*(8732+32))))))";
+
+//
+//
+
+
 #include <stdio.h>
+
+void I();
+void T();
+void S();
+void N();
+void R();
+void L();
+void O();
+void A();
 
 typedef enum E  {
     mais = '+',
@@ -50,16 +64,15 @@ typedef enum E  {
 } E;
 
 E atual;
-int i;
-const char * sequencia;
+int i = 0;
 
 void proximo() {
     i++;
-    atual = sequencia[i];
+    atual = PALAVRA[i];
 }
 
 void error() {
-    printf("Erro no token %c, posicao %i", atual, i);
+    printf("Erro no token %c, posicao %i", atual, i + 1);
     abort();
 }
 
@@ -123,52 +136,46 @@ void N() {
     }
 }
 
+void I() {
+    if (aceita(pare)) {
+        L();
+        N();
+        T();
+        R();
+    } else {
+        N();
+    }
+}
+
 void T() {
-    N();
-    O();
-    N();
-}
-
-void A1() {
-    L();
-    T();
-    R();
-}
-
-void A2() {
-    T();
+    if (aceita(NULL)) { //palavra vazia
+        printf("Linguagem reconhecida \n");
+        return;
+    } else if (aceita(pard)) {
+        ;
+    } else {
+        O();
+        I();
+        T();
+    }
 }
 
 void A() {
-    if (aceita(pare /* = ( */)) {
-        A1();
-    } else {
-        A2();
-    }
+    I();
+    T();
 }
 
-
-
-int S() {
-    if (atual == NULL) {
-        return 1;
-    }
+void S() {
     A();
-    return S();
 }
 
-int parse(const char * sequence) {
-    sequencia = sequence;
-    i = 0;
-    atual = sequence[0];
-    if (S()) {
-        printf("Linguagem reconhecida \n");
-    }
-    return 1;
+void reconhece() {
+    atual = PALAVRA[0];
+    S();
 }
 
 int main(int argc, const char * argv[]) {
-    parse("(123+3)1+3");
+    reconhece();
     return 0;
 }
 

@@ -5,6 +5,9 @@
 //  Rafael Gonçalves
 //  TIA: 31304427
 //
+//  João Victor Menezes Rocha
+//  TIA: 31381545
+//
 //  Alfabeto:
 //  E = {1, 2, 3, 4, 5, 6, 7, 8, 9, (, ), +, -, *, /}
 //
